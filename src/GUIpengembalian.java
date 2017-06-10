@@ -8,21 +8,17 @@ import java.sql.*;
 
 public class GUIpengembalian extends JFrame implements ActionListener
 {
-    public String JJ9, JJ10,  id_member, tanggal_pengembalian;
-
-
-    private static JTextField tfIDM;
-    private static JTextField tfTPeng;
-
-    private static JButton btnUpdate;
-
-
     public static String driver;
     public static Connection con;
     public static Statement st;
+    private static JTextField tfIDM;
+    private static JTextField tfTPeng;
+    private static JButton btnUpdate;
+    public String JJ9, JJ10,  id_member, tanggal_pengembalian;
 
     public GUIpengembalian()
     {
+        setContentPane(new JLabel(new ImageIcon("src/book.jpg")));
         JLabel lbJJ9       = new JLabel ("Data");
         JLabel lbJJ10      = new JLabel ("Pengembalian Buku Perpustakaan");
         JLabel lbIDM       = new JLabel ("ID Member ");
@@ -71,14 +67,20 @@ public class GUIpengembalian extends JFrame implements ActionListener
         add(btnUpdate);
 
         btnUpdate.addActionListener(this);
-        setSize(460,300);
+        setSize(550,330);
         setTitle("Perpustakaan Teknologi Informasi");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
     }
 
+    public static void main(String args []) throws Exception
+    {
+        GUIpengembalian s = new GUIpengembalian ();
+        s.setVisible(true);
+    }
+
     public void update() throws Exception
-5    {
+   {
         id_member                       = tfIDM.getText();
         tanggal_pengembalian            = tfTPeng.getText();
 
@@ -90,7 +92,6 @@ public class GUIpengembalian extends JFrame implements ActionListener
         st.executeUpdate("UPDATE tb_peminjaman SET tanggal_pengembalian  = '"+tanggal_pengembalian+"'WHERE id_member = '"+id_member+"'");
         System.out.println("1 row updated");
     }
-
 
     public void actionPerformed(ActionEvent e)
     {
@@ -106,12 +107,6 @@ public class GUIpengembalian extends JFrame implements ActionListener
             }
         }
 
-    }
-
-    public static void main(String args []) throws Exception
-    {
-        GUIpengembalian s = new GUIpengembalian ();
-        s.setVisible(true);
     }
 
 }
