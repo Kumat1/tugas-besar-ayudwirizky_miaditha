@@ -24,6 +24,8 @@ public class GUImember extends JFrame implements ActionListener
     private static JButton btnUpdate;
     private static JButton btnDelete;
     private static JButton btnCari;
+    private static JButton btnCheck;
+
     public String JJ3, JJ4,id_member, nama_member,alamat_member, hp_member;
 
     public GUImember()
@@ -48,6 +50,7 @@ public class GUImember extends JFrame implements ActionListener
         btnUpdate     = new JButton ("Update");
         btnDelete     = new JButton ("Delete");
         btnCari       = new JButton ("Find");
+        btnCheck      = new JButton ("Check");
 
         setLayout(null);
         Dimension sizelbJJ3       = lbJJ3.getPreferredSize();
@@ -67,6 +70,7 @@ public class GUImember extends JFrame implements ActionListener
         Dimension sizebtnUpdate   = btnUpdate.getPreferredSize();
         Dimension sizebtnDelete   = btnDelete.getPreferredSize();
         Dimension sizebtnCari     = btnCari.getPreferredSize();
+        Dimension sizebtnCheck    = btnCheck.getPreferredSize();
 
         lbJJ3.setBounds(220,10, sizelbJJ3.width, sizelbJJ3.height);
         lbJJ4.setBounds(175,40, sizelbJJ4.width, sizelbJJ4.height);
@@ -85,6 +89,7 @@ public class GUImember extends JFrame implements ActionListener
         btnUpdate.setBounds(220,250, sizebtnUpdate.width, sizebtnUpdate.height);
         btnDelete.setBounds(345,250, sizebtnDelete.width, sizebtnDelete.height);
         btnCari.setBounds(100,300, sizebtnCari.width, sizebtnCari.height);
+        btnCheck.setBounds(440,250, sizebtnCheck.width, sizebtnCheck.height);
 
         add(lbJJ3);
         add(lbJJ4);
@@ -102,11 +107,14 @@ public class GUImember extends JFrame implements ActionListener
         add(btnUpdate);
         add(btnDelete);
         add(btnCari);
+        add(btnCheck);
 
         btnInsert.addActionListener(this);
         btnUpdate.addActionListener(this);
         btnDelete.addActionListener(this);
         btnCari.addActionListener(this);
+        btnCheck.addActionListener(this);
+
         setSize(550,450);
         setTitle("Perpustakaan Teknologi Informasi");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -195,6 +203,7 @@ public class GUImember extends JFrame implements ActionListener
         {
             try{
                 this.insert();
+                JOptionPane.showMessageDialog(rootPane, "data berhasil ditambah!" );
             }
             catch (Exception es){
                 JOptionPane.showMessageDialog(null, "Maaf! Input Error");
@@ -205,6 +214,7 @@ public class GUImember extends JFrame implements ActionListener
             try
             {
                 this.update();
+                JOptionPane.showMessageDialog(rootPane, "Data berhasil di update!" );
             }
             catch (Exception es)
             {
@@ -217,6 +227,7 @@ public class GUImember extends JFrame implements ActionListener
             try
             {
                 this.delete();
+                JOptionPane.showMessageDialog(rootPane, "Data berhasil dihapus!" );
             }
             catch (Exception es)
             {
@@ -233,6 +244,15 @@ public class GUImember extends JFrame implements ActionListener
             {
                 JOptionPane.showMessageDialog(null, "Maaf! Input Error");
             }
+        }
+        else if(e.getSource()== btnCheck)
+        {
+            btnCheck.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    new datamember();
+                }
+            });
         }
     }
 

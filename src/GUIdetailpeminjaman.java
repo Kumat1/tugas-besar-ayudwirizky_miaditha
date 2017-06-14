@@ -143,6 +143,7 @@ public class GUIdetailpeminjaman extends JFrame implements ActionListener
             try
             {
                 this.insert();
+                JOptionPane.showMessageDialog(rootPane, "Data berhasil ditambah!" );
             }
             catch (Exception es)
             {
@@ -154,6 +155,7 @@ public class GUIdetailpeminjaman extends JFrame implements ActionListener
             try
             {
                 this.update();
+                JOptionPane.showMessageDialog(rootPane, "Data berhasil di update!" );
             }
             catch (Exception es)
             {
@@ -166,6 +168,7 @@ public class GUIdetailpeminjaman extends JFrame implements ActionListener
             try
             {
                 this.delete();
+                JOptionPane.showMessageDialog(rootPane, "Data berhasil dihapus!" );
             }
             catch (Exception es)
             {

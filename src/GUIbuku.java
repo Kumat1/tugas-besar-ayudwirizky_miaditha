@@ -26,6 +26,8 @@ public class GUIbuku extends JFrame implements ActionListener
     private static JButton btnUpdate;
     private static JButton btnDelete;
     private static JButton btnCari;
+    private static JButton btnCheck;
+
     public String JJ1, JJ2,id_buku, judul_buku,isbn, pengarang, penerbit,tahun_buku;
 
     public GUIbuku()
@@ -55,6 +57,7 @@ public class GUIbuku extends JFrame implements ActionListener
         btnUpdate   = new JButton ("Update");
         btnDelete   = new JButton ("Delete");
         btnCari		= new JButton ("Find");
+        btnCheck    = new JButton("Check");
 
         setLayout(null);
         Dimension sizelbJJ1       = lbJJ1.getPreferredSize();
@@ -78,6 +81,7 @@ public class GUIbuku extends JFrame implements ActionListener
         Dimension sizebtnUpdate   = btnUpdate.getPreferredSize();
         Dimension sizebtnDelete   = btnDelete.getPreferredSize();
         Dimension sizebtnCari     = btnCari.getPreferredSize();
+        Dimension sizebtnCheck     = btnCheck.getPreferredSize();
 
         lbJJ1.setBounds(210,5, sizelbJJ1.width, sizelbJJ1.height);
         lbJJ2.setBounds(170,25, sizelbJJ2.width, sizelbJJ2.height);
@@ -87,7 +91,6 @@ public class GUIbuku extends JFrame implements ActionListener
         lbPengarang.setBounds(10,170, sizelbPengarang.width, sizelbPengarang.height);
         lbPenerbit.setBounds(10,210, sizelbPenerbit.width, sizelbPenerbit.height);
         lbTahun.setBounds(10,250, sizelbTahun.width, sizelbTahun.height);
-
 
 
         tfID.setBounds(100,50, sizetfID.width, sizetfID.height);
@@ -102,6 +105,7 @@ public class GUIbuku extends JFrame implements ActionListener
         btnUpdate.setBounds(195,290, sizebtnUpdate.width, sizebtnUpdate.height);
         btnDelete.setBounds(300,290, sizebtnDelete.width, sizebtnDelete.height);
         btnCari.setBounds(100,350, sizebtnDelete.width, sizebtnDelete.height);
+        btnCheck.setBounds(390,290, sizebtnCheck.width, sizebtnCheck.height);
 
         add(lbJJ1);
         add(lbJJ2);
@@ -123,11 +127,13 @@ public class GUIbuku extends JFrame implements ActionListener
         add(btnUpdate);
         add(btnDelete);
         add(btnCari);
+        add(btnCheck);
 
         btnInsert.addActionListener(this);
         btnUpdate.addActionListener(this);
         btnDelete.addActionListener(this);
         btnCari.addActionListener(this);
+        btnCheck.addActionListener(this);
 
         setSize(500,500);
         setTitle("Perpustakaan Teknologi Informasi");
@@ -230,6 +236,7 @@ public class GUIbuku extends JFrame implements ActionListener
             try
             {
                 this.insert();
+                JOptionPane.showMessageDialog(rootPane, "data berhasil ditambah!" );
             }
             catch (Exception es)
             {
@@ -241,6 +248,7 @@ public class GUIbuku extends JFrame implements ActionListener
             try
             {
                 this.update();
+                JOptionPane.showMessageDialog(rootPane, "Data berhasil di update!" );
             }
             catch (Exception es)
             {
@@ -253,6 +261,7 @@ public class GUIbuku extends JFrame implements ActionListener
             try
             {
                 this.delete();
+                JOptionPane.showMessageDialog(rootPane, "Data berhasil dihapus!" );
             }
             catch (Exception es)
             {
@@ -270,6 +279,15 @@ public class GUIbuku extends JFrame implements ActionListener
             {
                 JOptionPane.showMessageDialog(null, "Maaf! Input Error");
             }
+        }
+        else if(e.getSource()== btnCheck)
+        {
+            btnCheck.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    new databuku();
+                }
+            });
         }
 
     }

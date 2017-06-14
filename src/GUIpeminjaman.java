@@ -27,6 +27,9 @@ public class GUIpeminjaman extends JFrame implements ActionListener
     private static JButton btnDelete;
     private static JButton btnTambahbuku;
     private static JButton btnCari;
+    private static JButton btnBuku;
+    private static JButton btnMember;
+
     public String  JJ5, JJ6, id_peminjaman, id_member, id_karyawan, jumlah_buku,tanggal_peminjaman, tanggal_deadline_pengembalian;
 
     public GUIpeminjaman()
@@ -54,6 +57,8 @@ public class GUIpeminjaman extends JFrame implements ActionListener
         btnDelete          = new JButton ("Delete");
         btnTambahbuku      = new JButton ("Tambah Buku");
         btnCari            = new JButton ("Find");
+        btnBuku            = new JButton ("Data Buku");
+        btnMember          = new JButton ("Data Member");
 
         setLayout(null);
         Dimension sizelbJJ5       = lbJJ5.getPreferredSize();
@@ -78,6 +83,8 @@ public class GUIpeminjaman extends JFrame implements ActionListener
         Dimension sizebtnDelete   = btnDelete.getPreferredSize();
         Dimension sizebtnTambahbuku   = btnTambahbuku.getPreferredSize();
         Dimension sizebtnCari     = btnCari.getPreferredSize();
+        Dimension sizebtnBuku    = btnBuku.getPreferredSize();
+        Dimension sizebtnMember    = btnMember.getPreferredSize();
 
         lbJJ5.setBounds(245,20, sizelbJJ5.width, sizelbJJ5.height);
         lbJJ6.setBounds(170,50, sizelbJJ6.width, sizelbJJ6.height);
@@ -100,7 +107,9 @@ public class GUIpeminjaman extends JFrame implements ActionListener
         btnUpdate.setBounds(250,350, sizebtnUpdate.width, sizebtnUpdate.height);
         btnDelete.setBounds(350,350, sizebtnDelete.width, sizebtnDelete.height);
         btnTambahbuku.setBounds(150,240, sizebtnTambahbuku.width, sizebtnTambahbuku.height);
-        btnCari.setBounds(150,400, sizebtnCari.width, sizebtnCari.height);
+        btnCari.setBounds(150,390, sizebtnCari.width, sizebtnCari.height);
+        btnBuku.setBounds(40,350, sizebtnBuku.width, sizebtnBuku.height);
+        btnMember.setBounds(30,400, sizebtnMember.width, sizebtnMember.height);
 
         add(lbJJ5);
         add(lbJJ6);
@@ -123,12 +132,17 @@ public class GUIpeminjaman extends JFrame implements ActionListener
         add(btnDelete);
         add(btnTambahbuku);
         add(btnCari);
+        add(btnBuku);
+        add(btnMember);
 
         btnInsert.addActionListener(this);
         btnUpdate.addActionListener(this);
         btnDelete.addActionListener(this);
         btnCari.addActionListener(this);
         btnTambahbuku.addActionListener(this);
+        btnBuku.addActionListener(this);
+        btnMember.addActionListener(this);
+
         setSize(500,500);
         setTitle("Perpustakaan Teknologi Informasi");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -204,7 +218,7 @@ public class GUIpeminjaman extends JFrame implements ActionListener
         Class.forName(driver);
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/perpustakaan","root","");
         Statement st = con.createStatement();
-        String sql= "SELECT * FROM tb_member WHERE id_member LIKE '"+Cari+"' ";
+        String sql= "SELECT * FROM tb_peminjaman WHERE id_peminjaman LIKE '"+Cari+"' ";
         System.out.println("1 row searched");
         ResultSet rs = st.executeQuery(sql);
 
@@ -225,6 +239,7 @@ public class GUIpeminjaman extends JFrame implements ActionListener
         {
             try{
                 this.insert();
+                JOptionPane.showMessageDialog(rootPane, "Data berhasil ditambah!" );
             }
             catch (Exception es){
                 JOptionPane.showMessageDialog(null, "Maaf! Input Error");
@@ -235,6 +250,7 @@ public class GUIpeminjaman extends JFrame implements ActionListener
             try
             {
                 this.update();
+                JOptionPane.showMessageDialog(rootPane, "Data berhasil di update!" );
             }
             catch (Exception es)
             {
@@ -247,6 +263,7 @@ public class GUIpeminjaman extends JFrame implements ActionListener
             try
             {
                 this.delete();
+                JOptionPane.showMessageDialog(rootPane, "Data berhasil dihapus!" );
             }
             catch (Exception es)
             {
@@ -274,6 +291,24 @@ public class GUIpeminjaman extends JFrame implements ActionListener
             {
                 JOptionPane.showMessageDialog(null, "Maaf! Input Error");
             }
+        }
+        else if(e.getSource()== btnBuku)
+        {
+            btnBuku.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    new databuku();
+                }
+            });
+        }
+        else if(e.getSource()== btnMember)
+        {
+            btnMember.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    new datamember();
+                }
+            });
         }
     }
 }

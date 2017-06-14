@@ -195,6 +195,7 @@ public class GUIkaryawan extends JFrame implements ActionListener
         {
             try{
                 this.insert();
+                JOptionPane.showMessageDialog(rootPane, "Data berhasil ditambah!" );
             }
             catch (Exception es){
                 JOptionPane.showMessageDialog(null, "Maaf! Input Error");
@@ -205,6 +206,7 @@ public class GUIkaryawan extends JFrame implements ActionListener
             try
             {
                 this.update();
+                JOptionPane.showMessageDialog(rootPane, "Data berhasil di update!" );
             }
             catch (Exception es)
             {
@@ -217,6 +219,7 @@ public class GUIkaryawan extends JFrame implements ActionListener
             try
             {
                 this.delete();
+                JOptionPane.showMessageDialog(rootPane, "Data berhasil dihapus!" );
             }
             catch (Exception es)
             {
